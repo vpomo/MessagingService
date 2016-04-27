@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC  
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+ 
+    <definition name="home" extends=".mainTemplate">
+        <put-attribute name="body" value="/WEB-INF/jspf/index.jsp" />
+    </definition>
+
+    <definition name="registration" extends=".mainTemplate">
+        <put-attribute name="body" value="/WEB-INF/administration/registration.jsp" />
+    </definition>
+
+    <definition name="login_user" extends=".mainTemplate">
+        <put-attribute name="body" value="/WEB-INF/private/login.jsp" />
+    </definition>
+	<definition name="error" extends=".mainTemplate">
+        <put-attribute name="body" value="/WEB-INF/private/error.jsp" />
+    </definition>	
+    <definition name="create_draft_report" extends=".mainTemplate">
+        <put-attribute name="body" value="/WEB-INF/private/create_draft_report.jsp" />
+    </definition>
+    <definition name="create_report" extends=".mainTemplate">
+        <put-attribute name="body" value="/WEB-INF/private/create_report.jsp" />
+    </definition>
+
+
+    <definition name="logout_user" extends=".mainTemplate">
+        <put-attribute name="body" value="/WEB-INF/views/logout_user.jsp" />
+    </definition>
+    <definition name="common_phorm" extends=".mainTemplate">
+        <put-attribute name="body" value="/WEB-INF/views/common_phorm.jsp" />
+    </definition>
+    <definition name="report_phorm" extends=".mainTemplate">
+        <put-attribute name="body" value="/WEB-INF/views/report_phorm.jsp" />
+    </definition>
+
+    <definition name="end_create_draftreport" extends=".mainTemplate">
+        <put-attribute name="body" value="/WEB-INF/views/end_create_draftreport.jsp" />
+    </definition>
+    <definition name="end_create_report" extends=".mainTemplate">
+        <put-attribute name="body" value="/WEB-INF/views/end_create_report.jsp" />
+    </definition>
+    <definition name="error_user_login_first_report" extends=".mainTemplate">
+        <put-attribute name="body" value="/WEB-INF/views/error_user_login_first_report.jsp" />
+    </definition>
+    <definition name="error_user_login_report" extends=".mainTemplate">
+        <put-attribute name="body" value="/WEB-INF/views/error_user_login_report.jsp" />
+    </definition>
+
+    
+</tiles-definitions>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC  
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+    <!-- Default Main Template -->
+    <definition name=".mainTemplate" template="/WEB-INF/jspf/layout.jsp">
+        <put-attribute name="title" value="11"  />
+        <put-attribute name="header" value="/WEB-INF/jspf/header.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/jspf/footer.jsp" />
+        <put-attribute name="body" value="" />
+    </definition>
+
+<definition name="com.vpomo.springrg" template="/WEB-INF/jspf/layout.jsp">
+  <put-list-attribute name="items">
+    <add-attribute value="/WEB-INF/jspf/index.jsp" />
+  </put-list-attribute>
+</definition>
+
+    
+</tiles-definitions>
