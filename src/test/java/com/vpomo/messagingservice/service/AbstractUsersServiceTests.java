@@ -104,28 +104,25 @@ public abstract class AbstractUsersServiceTests {
     }
 
     @Test
-    public void testNewDateUser() {
+    public void testNewPasswordUser() {
         System.out.println(" ==== Test's UsersClass newDateUser() begin ==== ");
-        Users user = new Users();
-        Users user2 = new Users();
+        //Users user = new Users();
         String login = "adminTest";
 
-        user = this.usersService.getUserLogin(login);
+        Users user = this.usersService.getUserLogin(login);
 
-        Date currentDate = new Date();
         String password = "654321";
         String newPassword = "123456";
 
         this.usersService.newPasswordUser(user, password);
         String oldUserPassword = user.getPassword();
+
         System.out.println("oldUserPassword = " + oldUserPassword);
 
         this.usersService.newPasswordUser(user, newPassword);
-        user2 = this.usersService.getUserLogin(login);
         String newUserPassword = user.getPassword();
         System.out.println("newUserPassword = " + newUserPassword);
 
-        assertTrue(password != newPassword);
         assertTrue(!newUserPassword.equals(oldUserPassword));
 
         System.out.println(" ==== Test's UsersClass  newDateUser() passed ==== ");

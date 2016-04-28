@@ -9,12 +9,11 @@
 	<http pattern="/css/**" security="none" />
 
 	<http auto-config="true" use-expressions="true">
-		<intercept-url pattern="/create_report*" access="hasAnyRole('iogv','municipal')" />
-		<intercept-url pattern="/create_report/*" access="hasAnyRole('iogv','municipal')" />
-		<intercept-url pattern="/create_draft_report*" access="hasAnyRole('iogv','municipal')" />
-		<intercept-url pattern="/create_draft_report/*" access="hasAnyRole('iogv','municipal')" />
+		<intercept-url pattern="/index*" access="hasAnyRole('user','admin')" />
+		<intercept-url pattern="/index/*" access="hasAnyRole('user','admin')" />
+		<intercept-url pattern="/common_phorm*" access="hasAnyRole('user','admin')" />
+		<intercept-url pattern="/common_phorm/*" access="hasAnyRole('user','admin')" />
 
-		<intercept-url pattern="/registration*" access="hasRole('admin')" />
 		<intercept-url pattern="/login_user.jsp*" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
 			<form-login login-page="/login_user" authentication-failure-url="/error_login" default-target-url="/" />
 		<logout logout-url="/logout_user" />
