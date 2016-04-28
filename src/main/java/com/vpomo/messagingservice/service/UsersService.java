@@ -12,17 +12,19 @@ import java.util.List;
  */
 
 public interface UsersService {
-    public List<Users> getAll() throws DataAccessException;
+    List<Users> getAll() throws DataAccessException;
 
-    public Users getUserLogin(String login) throws DataAccessException;
+    Users getUserLogin(String login) throws DataAccessException;
 
-    public Integer addUser(String login, String password, String passwordTwo, String names, String email, String groupUser) throws DataAccessException;
+    Integer addUser(String login, String password, String passwordTwo, String names, String email, String groupUser) throws DataAccessException;
 
-    public Users newUser(String login, String password, String names, String email, String groupUser) throws DataAccessException;
+    Users newUser(String login, String password, String names, String email, String groupUser) throws DataAccessException;
 
-    public void newPasswordUser(Users user, String password) throws DataAccessException;
+    void newPasswordUser(Users user, String password) throws DataAccessException;
 
-    public List<Users> getUsersGroup(String grUser) throws DataAccessException;
+    void updateUser(String login, String password, String fioUser, String emailUser, String groupUser) throws DataAccessException;
 
-    public void remove(String login) throws DataAccessException;
+    List<Users> getUsersGroup(String grUser) throws DataAccessException;
+
+    void remove(String login) throws DataAccessException;
 }

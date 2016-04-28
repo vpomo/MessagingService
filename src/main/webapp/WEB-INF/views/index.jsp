@@ -24,12 +24,13 @@
     </c:if>
 
     <section>
+        <br>
         <div id="iogv">
-
+            <a href="${pageContext.request.contextPath}/registration">Регистрация нового пользователя</a>
         </div>
-
+        <br>
         <div id="omsu">
-
+            <a href="${pageContext.request.contextPath}/usermanagement">Управление пользователями</a>
         </div>
     </section>
 

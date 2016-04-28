@@ -13,6 +13,8 @@
 		<intercept-url pattern="/index/*" access="hasAnyRole('user','admin')" />
 		<intercept-url pattern="/common_phorm*" access="hasAnyRole('user','admin')" />
 		<intercept-url pattern="/common_phorm/*" access="hasAnyRole('user','admin')" />
+		<intercept-url pattern="/usermanagement*" access="hasRole('admin')" />
+		<intercept-url pattern="/usermanagement/*" access="hasRole('admin')" />
 
 		<intercept-url pattern="/login_user.jsp*" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
 			<form-login login-page="/login_user" authentication-failure-url="/error_login" default-target-url="/" />

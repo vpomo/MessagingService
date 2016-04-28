@@ -82,6 +82,18 @@ public class JpaUsersRepositoryImpl implements com.vpomo.messagingservice.reposi
     }
 
     @Override
+    public void updateUser(String login, String password, String fioUser, String emailUser, String groupUser) {
+        Users user = null;
+        user = this.entityManager.find(Users.class, login);
+        user.setPassword(password);
+        user.setNameUser(fioUser);
+        user.setEmail(emailUser);
+        user.setGroupUser(groupUser);
+        this.entityManager.merge(user);
+        this.entityManager.flush();
+    }
+
+    @Override
     public List<Users> getUsersGroup(String grUser) {
         Query query = this.entityManager.createQuery("SELECT u FROM Users u WHERE u.groupUser = :groupUser");
         query.setParameter("groupUser", grUser);

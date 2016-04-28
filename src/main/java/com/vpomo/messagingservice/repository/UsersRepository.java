@@ -20,6 +20,8 @@ public interface UsersRepository {
 
     Users newUser(String login, String password, String names, String email, String groupUser) throws DataAccessException;
 
+    void updateUser(String login, String password, String fioUser, String emailUser, String groupUser) throws DataAccessException;
+
     void newPasswordUser(Users user, String password) throws DataAccessException;
 
     List<Users> getUsersGroup(String grUser) throws DataAccessException;

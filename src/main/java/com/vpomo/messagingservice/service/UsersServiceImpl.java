@@ -59,6 +59,12 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
+    @Transactional
+    public void updateUser(String login, String password, String fioUser, String emailUser, String groupUser) throws DataAccessException {
+        usersRepository.updateUser(login, password, fioUser, emailUser, groupUser);
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public List<Users> getUsersGroup(String grUser) throws DataAccessException {
         return usersRepository.getUsersGroup(grUser);
