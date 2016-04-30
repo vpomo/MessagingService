@@ -67,6 +67,17 @@ public class Message implements Serializable {
         this.dateMessage = dateMessage;
     }
 
+    public Message(Users fromUserId, String fromUserFio, Users toUserId, String toUserFio,
+                   String subject, String textMessage, Date currentDate) {
+        this.fromUserMessage = fromUserId;
+        this.nameFromUser = fromUserFio;
+        this.toUserMessage = toUserId;
+        this.nameToUser = toUserFio;
+        this.subjectMesage = subject;
+        this.textMesage = textMessage;
+        this.dateMessage = currentDate;
+    }
+
     public Integer getIdMessage() {
         return idMessage;
     }

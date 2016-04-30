@@ -39,6 +39,13 @@ public class AddressBook implements Serializable {
     private Users userOwner;
 
     public AddressBook() {
+
+    }
+
+    public AddressBook(Users userOwner, String toUserId, String toUserFio) {
+        this.userOwner = userOwner;
+        this.idUser = toUserId;
+        this.nameUser = toUserFio;
     }
 
     public Integer getIdAddress() {
