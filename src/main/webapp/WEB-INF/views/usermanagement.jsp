@@ -27,8 +27,8 @@
                 </c:if>
 
                 <br>
-                <table id="jqGrid"></table>
-                <div id="jqGridPager"></div>
+                <table id="jqGridUser"></table>
+                <div id="jqGridPagerUser"></div>
                 <br>
             </div>
         </article>

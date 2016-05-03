@@ -36,13 +36,14 @@ public class JpaAddressBookRepositoryImpl implements com.vpomo.messagingservice.
 
     @Override
     public int addAddress(Users userOwner, String toUserId, String toUserFio) {
+        int id = 0;
         try {
             AddressBook address = new AddressBook(userOwner, toUserId, toUserFio);
             this.entityManager.persist(address);
             return address.getIdAddress();
         } catch (Exception e) {
             e.printStackTrace();
-            return 0;
+            return id;
         }
     }
 
