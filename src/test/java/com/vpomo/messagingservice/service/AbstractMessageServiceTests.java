@@ -1,6 +1,5 @@
 package com.vpomo.messagingservice.service;
 
-import com.vpomo.messagingservice.model.AddressBook;
 import com.vpomo.messagingservice.model.Message;
 import com.vpomo.messagingservice.model.Users;
 import org.junit.After;
@@ -62,8 +61,8 @@ public abstract class AbstractMessageServiceTests {
 
     @After
     public void finish() {
-        usersService.remove("testUser1");
-        usersService.remove("testUser2");
+        //usersService.remove("testUser1");
+        //usersService.remove("testUser2");
     }
 
 
