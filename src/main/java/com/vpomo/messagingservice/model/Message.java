@@ -1,5 +1,7 @@
 package com.vpomo.messagingservice.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -47,9 +49,11 @@ public class Message implements Serializable {
     @Column(name = "text_message")
     private String textMesage;
 
+    @JsonIgnore
     @JoinColumn(name = "from_user_id", referencedColumnName = "login")
     @ManyToOne(optional = false)
     private Users fromUserMessage;
+    @JsonIgnore
     @JoinColumn(name = "to_user_id", referencedColumnName = "login")
     @ManyToOne(optional = false)
     private Users toUserMessage;

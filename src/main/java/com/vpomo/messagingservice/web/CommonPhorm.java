@@ -46,33 +46,53 @@ public class CommonPhorm {
 
     @RequestMapping(value = "/common", method = RequestMethod.GET)
     public String firstEnter(HttpServletRequest request, Principal principal, Model model) {
-
-        Enumeration<String> params = request.getParameterNames();
-        while (params.hasMoreElements()) {
-            String parameter = params.nextElement();
-            login = "login".equals(parameter) ? request.getParameter(parameter) : login;
+        String nameUser = null;
+        if (principal != null) {
+            nameUser = principal.getName();
         }
-        model.addAttribute("login", login);
-        List<Users> result = new ArrayList<Users>();
-        List<Users> users = usersService.getAll();
-        model.addAttribute("users", users);
-
-        request.getSession().getServletContext().setAttribute("login", login);
-        logger.info("common_phorm GET !!!");
-
+        logger.info("common_phorm GET for user: " + nameUser + " !!!!");
         return "/common";
     }
 
     @RequestMapping(value = "/common", method = RequestMethod.POST)
     public String makeMessages(HttpServletRequest request, Principal principal, Model model) {
-        String name_user = null;
+        String idMessage = null;
+        String nameFromUser = null; String nameToUser = null;
+        String dateMessage = null; String subjectMesage = null;
+        String nameUser = null;
         if (principal != null) {
-            name_user = principal.getName();
+            nameUser = principal.getName();
         }
-        logger.info("common_phorm POST !!!");
-        if (name_user == null ? login == null : name_user.equals(login)) {
-            return ("/login_user");
+        logger.info("common_phorm POST for user: " + nameUser + " !!!!");
+
+        Enumeration<String> parameters = request.getParameterNames();
+        while (parameters.hasMoreElements()) {
+            String parameter = parameters.nextElement();
+            switch (parameter) {
+                case "idMessage":
+                    idMessage = request.getParameter(parameter);
+                    break;
+                case "nameFromUser":
+                    nameFromUser = request.getParameter(parameter);
+                    break;
+                case "nameToUser":
+                    nameToUser = request.getParameter(parameter);
+                    break;
+                case "dateMessage":
+                    dateMessage = request.getParameter(parameter);
+                    break;
+                case "subjectMesage":
+                    subjectMesage = request.getParameter(parameter);
+                    break;
+            }
         }
+        logger.info("idMessage=" + idMessage + "; nameFromUser=" + nameFromUser + "; nameToUser=" + nameToUser + "; subjectMesage=" + subjectMesage);
+
+        if ((idMessage != null) & (nameFromUser == null) & (nameToUser == null) & (dateMessage == null) & (subjectMesage == null) ) {
+                this.messageService.removeMessage(Integer.parseInt(idMessage));
+                model.addAttribute("notif", "Сообщение успешно удалено!");
+        }
+
         return "/common";
     }
 

@@ -1,5 +1,7 @@
 package com.vpomo.messagingservice.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -51,11 +53,13 @@ public class Users implements Serializable {
     @Column(name = "group_user")
     private String groupUser;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fromUserMessage")
     private List<Message> messageFromUserList;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "toUserMessage")
     private List<Message> messageToUserList;
-
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userOwner")
     private List<AddressBook> addressBookList;
 
@@ -114,7 +118,7 @@ public class Users implements Serializable {
         this.email = email;
     }
 
-    @XmlTransient
+    //@XmlTransient
     public List<Message> getMessageFromUserList() {
         return messageFromUserList;
     }
@@ -123,7 +127,7 @@ public class Users implements Serializable {
         this.messageFromUserList = messageFromUserList;
     }
 
-    @XmlTransient
+    //@XmlTransient
     public List<Message> getMessageToUserList() {
         return messageToUserList;
     }
@@ -132,7 +136,7 @@ public class Users implements Serializable {
         this.messageToUserList = messageToUserList;
     }
 
-    @XmlTransient
+    //@XmlTransient
     public List<AddressBook> getAddressBookList() {
         return addressBookList;
     }

@@ -53,6 +53,12 @@
             <table id="jqGridMain"></table>
             <div id="jqGridPagerMain"></div>
             <br>
+            <br>
+            <p>Адрессная книга:</p>
+            <br>
+            <table id="GridAddress"></table>
+            <div id="PagerAdress"></div>
+            <br>
         </div>
     </article>
 
@@ -65,61 +71,48 @@
 </div>
 
 
-<section>
-    <c:forEach var="user" items="${users}">
-
-        <a href="common?idrep=${user.login}"> [${user.login}]</a>
-
-    </c:forEach>
-
-</section>
-
 <script type="text/javascript">
     $(document).ready(function () {
         $("#jqGridMain").jqGrid({
-            //url: '$users',
+            url: 'http://localhost:8080/getallmessages',
             // we set the changes to be made at client side using predefined word clientArray
             editurl: 'http://localhost:8080/common',
             datatype: "json",
             colModel: [
                 {
-                    label: 'От кого',
-                    name: 'login',
+                    label: 'idMessage',
+                    name: 'idMessage',
                     width: 75,
                     key: true,
-                    editable: true,
-                    editrules: {required: true}
+                    hidden: true,
+                    editable: false,
                 },
                 {
-                    label: 'ФИО',
-                    name: 'nameUser',
-                    width: 140,
+                    label: 'От кого',
+                    name: 'nameFromUser',
+                    width: 75,
+                    editable: true,
+                },
+                {
+                    label: 'Дата - время',
+                    name: 'dateMessage',
+                    width: 80,
                     editable: true // must set editable to true if you want to make the field editable
                 },
                 {
-                    label: 'Роль в системе',
-                    name: 'groupUser',
+                    label: 'Тема',
+                    name: 'subjectMesage',
                     width: 100,
-                    editable: true,
-                    edittype: "select",
-                    editoptions: {
-                        value: "user:user;admin:admin"
-                    }
-                },
-                {
-                    label: 'E-mail',
-                    name: 'email',
-                    width: 140,
                     editable: true
                 },
                 {
-                    label: 'Пароль',
-                    name: 'password',
-                    width: 80,
+                    label: 'Кому',
+                    name: 'nameToUser',
+                    width: 140,
                     editable: true
                 }
             ],
-            sortname: 'login',
+            sortname: 'dateMessage',
             sortorder: 'asc',
             loadonce: true,
             viewrecords: true,
@@ -131,12 +124,12 @@
         $('#jqGridMain').jqGrid('navGrid', '#jqGridPagerMain',
                 // the buttons to appear on the toolbar of the grid
                 {
-                    edit: true,
-                    add: true,
+                    edit: false,
+                    add: false,
                     del: true,
                     search: false,
-                    refresh: true,
-                    view: false,
+                    refresh: false,
+                    view: true,
                     position: "left",
                     cloneToTop: false
                 },
@@ -165,8 +158,106 @@
                     url: 'http://localhost:8080/common',
                     reloadAfterSubmit: false,
                     delData: {
-                        login: function () {
+                        idMessage: function () {
                             var grid = $("#jqGridMain");
+                            var rowKey = grid.jqGrid('getGridParam', "selrow");
+                            return rowKey;
+                        }
+                    }
+                },
+                {
+                    errorTextFormat: function (data) {
+                        return 'Error: ' + data.responseText
+                    }
+                });
+
+        $("#GridAddress").jqGrid({
+            url: 'http://localhost:8080/getallmessages',
+            // we set the changes to be made at client side using predefined word clientArray
+            editurl: 'http://localhost:8080/common',
+            datatype: "json",
+            colModel: [
+                {
+                    label: 'idMessage',
+                    name: 'idMessage',
+                    width: 75,
+                    key: true,
+                    hidden: true,
+                    editable: false,
+                },
+                {
+                    label: 'От кого',
+                    name: 'nameFromUser',
+                    width: 75,
+                    editable: true,
+                },
+                {
+                    label: 'Дата - время',
+                    name: 'dateMessage',
+                    width: 80,
+                    editable: true // must set editable to true if you want to make the field editable
+                },
+                {
+                    label: 'Тема',
+                    name: 'subjectMesage',
+                    width: 100,
+                    editable: true
+                },
+                {
+                    label: 'Кому',
+                    name: 'nameToUser',
+                    width: 140,
+                    editable: true
+                }
+            ],
+            sortname: 'dateMessage',
+            sortorder: 'asc',
+            loadonce: true,
+            viewrecords: true,
+            width: 780,
+            height: 200,
+            rowNum: 10,
+            pager: '#PagerAddress'
+        });
+        $('#GridAddress').jqGrid('navGrid', '#PagerAddress',
+                // the buttons to appear on the toolbar of the grid
+                {
+                    edit: false,
+                    add: false,
+                    del: true,
+                    search: false,
+                    refresh: false,
+                    view: true,
+                    position: "left",
+                    cloneToTop: false
+                },
+                // options for the Edit Dialog
+                {
+                    editCaption: "The Edit Dialog",
+                    recreateForm: true,
+                    checkOnUpdate: true,
+                    checkOnSubmit: true,
+                    closeAfterEdit: true,
+                    errorTextFormat: function (data) {
+                        return 'Error: ' + data.responseText
+                    }
+                },
+                // options for the Add Dialog
+                {
+                    closeAfterAdd: true,
+                    recreateForm: true,
+                    errorTextFormat: function (data) {
+                        return 'Error: ' + data.responseText
+                    }
+                },
+                // options for the Delete Dailog
+                {
+                    msg: "Delete selected record(s)?",
+                    url: 'http://localhost:8080/common',
+                    reloadAfterSubmit: false,
+                    delData: {
+                        idMessage: function () {
+                            var grid = $("#GridAddress");
                             var rowKey = grid.jqGrid('getGridParam', "selrow");
                             return rowKey;
                         }

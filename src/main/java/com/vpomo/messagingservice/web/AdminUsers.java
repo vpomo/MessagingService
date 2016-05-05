@@ -2,6 +2,7 @@ package com.vpomo.messagingservice.web;
 
 import com.vpomo.messagingservice.model.Users;
 import com.vpomo.messagingservice.service.UsersService;
+import org.json.simple.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,17 +93,8 @@ public class AdminUsers {
 
     @RequestMapping(value = "/getalluser", method = RequestMethod.GET)
     public @ResponseBody List<Users> getAllUsers() {
-        List<Users> result = new ArrayList<Users>();
         List<Users> listUsers = usersService.getAll();
-        if (listUsers != null) {
-            for (int i = 0; i < listUsers.size(); i++) {
-                result.add(listUsers.get(i));
-                logger.info("№ " + i + "= " + listUsers.get(i).getLogin());
-            }
-        }
-        //logger.info(result);
-        return result;
-
+        return listUsers;
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
