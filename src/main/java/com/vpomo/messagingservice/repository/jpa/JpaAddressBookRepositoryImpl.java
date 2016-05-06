@@ -35,6 +35,14 @@ public class JpaAddressBookRepositoryImpl implements com.vpomo.messagingservice.
     }
 
     @Override
+    public List<AddressBook> getAddressByLogin(Users loginUser) {
+        Query query = this.entityManager.createQuery("SELECT a FROM AddressBook a WHERE a.userOwner = :userId");
+        query.setParameter("userId", loginUser);
+        List<AddressBook> resultList = query.getResultList();
+        return resultList;
+    }
+
+    @Override
     public int addAddress(Users userOwner, String toUserId, String toUserFio) {
         int id = 0;
         try {

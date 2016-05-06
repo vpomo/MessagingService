@@ -1,7 +1,6 @@
 package com.vpomo.messagingservice.service;
 
 import com.vpomo.messagingservice.model.AddressBook;
-import com.vpomo.messagingservice.model.Message;
 import com.vpomo.messagingservice.model.Users;
 import com.vpomo.messagingservice.repository.AddressBookRepository;
 import com.vpomo.messagingservice.repository.UsersRepository;
@@ -10,7 +9,6 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -32,6 +30,17 @@ public class AddressBookServiceImpl implements AddressBookService {
     @Transactional(readOnly = true)
     public List<AddressBook> getAll() throws DataAccessException {
         return addressBookRepository.getAll();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<AddressBook> getAddressByLogin(String loginUser) throws DataAccessException {
+        Users userOwner = usersRepository.getUserLogin(loginUser);
+        if (userOwner != null) {
+            return addressBookRepository.getAddressByLogin(userOwner);
+        } else {
+            return null;
+        }
     }
 
     @Override

@@ -11,6 +11,8 @@ import java.util.List;
 public interface AddressBookService {
     List<AddressBook> getAll() throws DataAccessException;
 
+    List<AddressBook> getAddressByLogin(String loginUser) throws DataAccessException;
+
     int addMessage(String userOwnerId, String toUserId, String toUserFio);
 
     void removeAddress(int id);

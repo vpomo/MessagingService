@@ -172,49 +172,37 @@
                 });
 
         $("#GridAddress").jqGrid({
-            url: 'http://localhost:8080/getallmessages',
+            url: 'http://localhost:8080/getalladdress',
             // we set the changes to be made at client side using predefined word clientArray
             editurl: 'http://localhost:8080/common',
             datatype: "json",
             colModel: [
                 {
-                    label: 'idMessage',
-                    name: 'idMessage',
+                    label: 'idAddress',
+                    name: 'idAddress',
                     width: 75,
                     key: true,
                     hidden: true,
                     editable: false,
                 },
                 {
-                    label: 'От кого',
-                    name: 'nameFromUser',
-                    width: 75,
+                    label: 'ФИО адресата',
+                    name: 'nameUser',
+                    width: 220,
                     editable: true,
                 },
                 {
-                    label: 'Дата - время',
-                    name: 'dateMessage',
+                    label: 'idUser',
+                    name: 'idUser',
                     width: 80,
                     editable: true // must set editable to true if you want to make the field editable
-                },
-                {
-                    label: 'Тема',
-                    name: 'subjectMesage',
-                    width: 100,
-                    editable: true
-                },
-                {
-                    label: 'Кому',
-                    name: 'nameToUser',
-                    width: 140,
-                    editable: true
                 }
             ],
-            sortname: 'dateMessage',
+            sortname: 'nameUser',
             sortorder: 'asc',
             loadonce: true,
             viewrecords: true,
-            width: 780,
+            width: 300,
             height: 200,
             rowNum: 10,
             pager: '#PagerAddress'
@@ -256,7 +244,7 @@
                     url: 'http://localhost:8080/common',
                     reloadAfterSubmit: false,
                     delData: {
-                        idMessage: function () {
+                        idAddress: function () {
                             var grid = $("#GridAddress");
                             var rowKey = grid.jqGrid('getGridParam', "selrow");
                             return rowKey;

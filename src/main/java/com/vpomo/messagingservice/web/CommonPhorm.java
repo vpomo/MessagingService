@@ -1,7 +1,8 @@
 package com.vpomo.messagingservice.web;
 
+import com.vpomo.messagingservice.model.AddressBook;
 import com.vpomo.messagingservice.model.Message;
-import com.vpomo.messagingservice.model.Users;
+import com.vpomo.messagingservice.service.AddressBookService;
 import com.vpomo.messagingservice.service.MessageService;
 import com.vpomo.messagingservice.service.UsersService;
 import org.slf4j.Logger;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -37,20 +37,22 @@ public class CommonPhorm {
 
     private MessageService messageService;
     private UsersService usersService;
+    private AddressBookService addressBookService;
 
     @Autowired
-    public CommonPhorm(MessageService messageService, UsersService usersService) {
+    public CommonPhorm(MessageService messageService, UsersService usersService, AddressBookService addressBookService) {
         this.messageService = messageService;
         this.usersService = usersService;
+        this.addressBookService = addressBookService;
     }
 
     @RequestMapping(value = "/common", method = RequestMethod.GET)
     public String firstEnter(HttpServletRequest request, Principal principal, Model model) {
-        String nameUser = null;
+        String loginUser = null;
         if (principal != null) {
-            nameUser = principal.getName();
+            loginUser = principal.getName();
         }
-        logger.info("common_phorm GET for user: " + nameUser + " !!!!");
+        logger.info("common_phorm GET for user: " + loginUser + " !!!!");
         return "/common";
     }
 
@@ -59,11 +61,11 @@ public class CommonPhorm {
         String idMessage = null;
         String nameFromUser = null; String nameToUser = null;
         String dateMessage = null; String subjectMesage = null;
-        String nameUser = null;
+        String loginUser = null;
         if (principal != null) {
-            nameUser = principal.getName();
+            loginUser = principal.getName();
         }
-        logger.info("common_phorm POST for user: " + nameUser + " !!!!");
+        logger.info("common_phorm POST for user: " + loginUser + " !!!!");
 
         Enumeration<String> parameters = request.getParameterNames();
         while (parameters.hasMoreElements()) {
@@ -98,8 +100,20 @@ public class CommonPhorm {
 
     @RequestMapping(value = "/getallmessages", method = RequestMethod.GET)
     public @ResponseBody
-    List<Message> getAllUsers() {
+    List<Message> getAllMessages(Principal principal) {
         return messageService.getAll();
+    }
+
+    @RequestMapping(value = "/getalladdress", method = RequestMethod.GET)
+    public @ResponseBody
+    List<AddressBook> getAllAddress(Principal principal) {
+        String loginUser = null;
+        if (principal != null) {
+            loginUser = principal.getName();
+            return addressBookService.getAddressByLogin(loginUser);
+        } else {
+            return null;
+        }
     }
 
 }

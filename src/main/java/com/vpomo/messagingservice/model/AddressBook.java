@@ -1,5 +1,7 @@
 package com.vpomo.messagingservice.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -33,7 +35,7 @@ public class AddressBook implements Serializable {
     @Column(name = "to_user_id")
     private String idUser;
 
-
+    @JsonIgnore
     @JoinColumn(name = "user_owner", referencedColumnName = "login")
     @ManyToOne(optional = false)
     private Users userOwner;
