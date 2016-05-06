@@ -13,6 +13,9 @@ import java.util.List;
 public interface MessageService {
     List<Message> getAll() throws DataAccessException;
 
+    List<Message> getMessagesByLogin(String loginUser) throws DataAccessException;
+
+
     int addMessage(String fromUserId, String fromUserFio, String toUserId, String toUserFio,
                    String subject, String textMessage, Date currentDate) throws DataAccessException;
 

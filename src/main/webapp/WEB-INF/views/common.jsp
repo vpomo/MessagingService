@@ -97,19 +97,25 @@
                     label: 'Дата - время',
                     name: 'dateMessage',
                     width: 80,
-                    editable: true // must set editable to true if you want to make the field editable
+                    editable: false
                 },
                 {
                     label: 'Тема',
                     name: 'subjectMesage',
                     width: 100,
-                    editable: true
+                    editable: false
                 },
                 {
                     label: 'Кому',
                     name: 'nameToUser',
                     width: 140,
-                    editable: true
+                    editable: false
+                },
+                {
+                    label: 'Текст сообщения',
+                    name: 'textMesage',
+                    width: 1,
+                    editable: false
                 }
             ],
             sortname: 'dateMessage',

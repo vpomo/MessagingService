@@ -1,15 +1,11 @@
 package com.vpomo.messagingservice.web;
 
-import com.vpomo.messagingservice.model.Users;
-import com.vpomo.messagingservice.service.UsersService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.security.Principal;
-import java.util.List;
 
 /**
  * Created by Помогалов on 27.04.2016.
@@ -26,7 +22,6 @@ public class Home {
         } else {
             model.addAttribute("notif", "Пожалуйста, зарегистрируйтесь в системе!");
         }
-
         return "index";
     }
 

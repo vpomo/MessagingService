@@ -101,7 +101,13 @@ public class CommonPhorm {
     @RequestMapping(value = "/getallmessages", method = RequestMethod.GET)
     public @ResponseBody
     List<Message> getAllMessages(Principal principal) {
-        return messageService.getAll();
+        String loginUser = null;
+        if (principal != null) {
+            loginUser = principal.getName();
+            return messageService.getMessagesByLogin(loginUser);
+        } else {
+            return null;
+        }
     }
 
     @RequestMapping(value = "/getalladdress", method = RequestMethod.GET)

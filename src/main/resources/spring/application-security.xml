@@ -11,8 +11,8 @@
 	<http auto-config="true" use-expressions="true">
 		<intercept-url pattern="/index*" access="hasAnyRole('user','admin')" />
 		<intercept-url pattern="/index/*" access="hasAnyRole('user','admin')" />
-		<intercept-url pattern="/common_phorm*" access="hasAnyRole('user','admin')" />
-		<intercept-url pattern="/common_phorm/*" access="hasAnyRole('user','admin')" />
+		<intercept-url pattern="/common*" access="hasAnyRole('user','admin')" />
+		<intercept-url pattern="/common/*" access="hasAnyRole('user','admin')" />
 		<intercept-url pattern="/usermanagement*" access="hasRole('admin')" />
 		<intercept-url pattern="/usermanagement/*" access="hasRole('admin')" />
 

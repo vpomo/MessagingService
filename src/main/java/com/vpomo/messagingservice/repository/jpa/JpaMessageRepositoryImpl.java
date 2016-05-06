@@ -33,6 +33,18 @@ public class JpaMessageRepositoryImpl implements com.vpomo.messagingservice.repo
     }
 
     @Override
+    public List<Message> getMessagesByLogin(Users loginUser) {
+        Query query = this.entityManager.createQuery("SELECT m FROM Message m WHERE m.toUserMessage = :userId");
+        query.setParameter("userId", loginUser);
+        List<Message> resultList = query.getResultList();
+        if (resultList != null) {
+            System.out.println("Есть сообщения !!!");
+        }
+        return resultList;
+    }
+
+
+    @Override
     public int addMessage(Users fromUserId, String fromUserFio, Users toUserId, String toUserFio,
                           String subject, String textMessage, Date currentDate) {
         try {

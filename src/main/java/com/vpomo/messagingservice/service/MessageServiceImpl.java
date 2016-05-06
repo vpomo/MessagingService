@@ -34,6 +34,17 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
+    @Transactional(readOnly = true)
+    public List<Message> getMessagesByLogin(String loginUser) throws DataAccessException {
+        Users userOwner = usersRepository.getUserLogin(loginUser);
+        if (userOwner != null) {
+            return messageRepository.getMessagesByLogin(userOwner);
+        } else {
+            return null;
+        }
+    }
+
+    @Override
     @Transactional
     public int addMessage(String fromUserId, String fromUserFio, String toUserId, String toUserFio,
                    String subject, String textMessage, Date currentDate) throws DataAccessException {

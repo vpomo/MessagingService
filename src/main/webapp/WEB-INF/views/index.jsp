@@ -9,6 +9,8 @@
         <p>Чтобы начать работу с системой необходимо пройти авторизацию
         </p>
         <br>
+        <a href="${pageContext.request.contextPath}/common">Основная форма</a>
+        <br> </br>
         <a href="${pageContext.request.contextPath}/registration">Регистрация нового пользователя</a>
         <br> </br>
         <a href="${pageContext.request.contextPath}/usermanagement">Управление пользователями</a>

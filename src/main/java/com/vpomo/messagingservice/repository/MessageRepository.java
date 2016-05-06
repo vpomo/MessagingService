@@ -13,6 +13,8 @@ import java.util.List;
 public interface MessageRepository {
     List<Message> getAll() throws DataAccessException;
 
+    List<Message> getMessagesByLogin(Users loginUser) throws DataAccessException;
+
     int addMessage(Users fromUserId, String fromUserFio, Users toUserId, String toUserFio,
                    String subject, String textMessage, Date currentDate) throws DataAccessException;
 
